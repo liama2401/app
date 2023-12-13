@@ -7,22 +7,32 @@ class namecalc
 
     static void Main()
     {
-        // Specify the path to your text file
         string filePath = "./names.txt";
 
-        // Read the entire line from the file
         string namesLine = File.ReadAllText(filePath);
 
-        // Split the line into an array of strings using commas as separators
-        string[] namesArray = namesLine.Split(',', StringSplitOptions.TrimEntries);
+        string[] namesArray = namesLine.Split(new[] { "\"", "," }, StringSplitOptions.RemoveEmptyEntries);
 
-        // Now 'namesArray' contains the names as strings
-
-        // You can loop through the array to see the names, for example:
-        foreach (var name in namesArray)
+        Array.Sort(namesArray);
+        int total = 0;
+        for (int i = 0; i < namesArray.Length; i++)
         {
-            Console.WriteLine(name);
+            int miniTotal = 0;
+            foreach (char c in namesArray[i])
+            {
+                miniTotal += char.ToUpper(c) - 64;
+            }
+            total += miniTotal * (i + 1);
         }
+        Console.WriteLine(total);
+        // Console.WriteLine(namesArray.Length);
+        // string namesLine2 = File.ReadAllText(filePath);
+
+
+        // string[] namesArray2 = namesLine.Split(",");
+        // Console.WriteLine(namesArray2.Length);
+
+
     }
 
 }
