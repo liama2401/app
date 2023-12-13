@@ -14,7 +14,7 @@ class namecalc
         string namesLine = File.ReadAllText(filePath);
 
         // Split the line into an array of strings using commas as separators
-        string[] namesArray = namesLine.Split(',');
+        string[] namesArray = namesLine.Split(',', StringSplitOptions.TrimEntries);
 
         // Now 'namesArray' contains the names as strings
 
